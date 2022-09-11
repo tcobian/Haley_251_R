@@ -1,0 +1,61 @@
+---
+title: "Lab 3b Bar Graph"
+subtitle: 'PHW251B: Data Visualization for Public Health'
+Name: Haley Ebert
+output:
+  pdf_document: default
+  html_document:
+    df_print: paged
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, 
+                      warning = FALSE, 
+                      error = FALSE, 
+                      message = FALSE)
+```
+
+```{r}
+library(tidyverse)
+library(janitor)
+library(here)
+```
+
+```{r}
+# Load in the data
+OutcomesClean <- read_csv("2022ClientOutcomes.csv")
+
+# Create distributions of DEI rating questions
+hist(OutcomesClean$DEI2)
+hist(OutcomesClean$DEI4)
+hist(OutcomesClean$DEI6)
+
+#histograms distributions show positive skews towards senses of belonging and individuality in experiences at WEV
+
+# Create distributions of business performance questions
+hist(OutcomesClean$BizSalesIntake)
+hist(OutcomesClean$GrossSales)
+hist(OutcomesClean$ProfitLossAtIntake)
+hist(OutcomesClean$NetProfit)
+hist(OutcomesClean$OwnersDrawAtIntake)
+hist(OutcomesClean$BizIncomeUse)
+
+# Create distributions of household income and financial health questions
+hist(OutcomesClean$Household4)
+hist(OutcomesClean$Household5)
+hist(OutcomesClean$FinancialHealth2)
+```
+
+```{r}
+#Create bar charts for DEI questions
+DEI2Bar <- ggplot(OutcomesClean, aes(x=DEI2)) +
+  geom_bar(fill="cyan4",
+           width = .5) +
+  labs(x = "Participant Identity Value", y = "Participant Count", title = "DEI Question 2", caption = "I feel my unique\nbackground and identity are valued at WEV") +
+  theme_minimal()
+
+DEI2Bar
+
+```
+
+
